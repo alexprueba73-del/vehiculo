@@ -1,0 +1,58 @@
+1class Vehiculo:
+    def __init__(self, marca, modelo, velocidad_maxima):
+        self.marca = marca
+        self.modelo = modelo
+        self.velocidad_maxima = velocidad_maxima
+        self.velocidad_actual = 0
+
+    def acelerar(self, incremento):
+        if self.velocidad_actual + incremento <= self.velocidad_maxima:
+            self.velocidad_actual += incremento
+        else:
+            self.velocidad_actual = self.velocidad_maxima
+        print(f"Velocidad actual: {self.velocidad_actual} km/h")
+
+    def frenar(self, decremento):
+        if self.velocidad_actual - decremento >= 0:
+            self.velocidad_actual -= decremento
+        else:
+            self.velocidad_actual = 0
+        print(f"Velocidad actual: {self.velocidad_actual} km/h")
+
+    def verificar_limite(self, velocidad_limite):
+        if self.velocidad_actual > velocidad_limite:
+            print("⚠️ El vehículo está excediendo el límite de velocidad.")
+        else:
+            print("✅ El vehículo está dentro del límite de velocidad.")
+
+
+# Crear objeto vehículo
+vehiculo = Vehiculo("Toyota", "Corolla", 180)
+
+while True:
+    print("\n--- MENÚ DE CONTROL DE VEHÍCULO ---")
+    print("1. Acelerar")
+    print("2. Frenar")
+    print("3. Verificar límite de velocidad")
+    print("4. Salir")
+
+    opcion = input("Seleccione una opción: ")
+
+    if opcion == "1":
+        incremento = int(input("Ingrese cuánto desea acelerar (km/h): "))
+        vehiculo.acelerar(incremento)
+
+    elif opcion == "2":
+        decremento = int(input("Ingrese cuánto desea frenar (km/h): "))
+        vehiculo.frenar(decremento)
+
+    elif opcion == "3":
+        limite = int(input("Ingrese el límite de velocidad a verificar: "))
+        vehiculo.verificar_limite(limite)
+
+    elif opcion == "4":
+        print("Saliendo del programa...")
+        break
+
+    else:
+        print("Opción inválida. Intente nuevamente.")
